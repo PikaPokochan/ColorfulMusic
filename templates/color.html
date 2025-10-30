@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>色を選んで光らせる</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/glowingstyle.css') }}">
+  <style>
+    #colorPickerContainer {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.8);
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+    <div class ="player">
+    <div class="audio-wrapper" style="margin-bottom: 20px;">
+        <audio id="audio" controls>
+            <source src="{{ url_for('download_file', filename=filename) }}" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="color-picker-wrapper">
+        <input type="color" id="bgColorPicker" value="#87cefa">
+    </div>
+    </div>
+
+
+
+  <script>
+    const picker = document.getElementById("bgColorPicker");
+    picker.addEventListener("input", () => {
+      document.body.style.backgroundColor = picker.value;
+    });
+  </script>
+</body>
+</html>
+

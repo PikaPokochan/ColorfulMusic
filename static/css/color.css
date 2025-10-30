@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    text-align: center;
+    font-family: sans-serif;
+    padding-top: 50px;
+    color: #87ceeb;
+    background-color: #000000;
+}
+
+.player {
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    align-items: center;    /* 中央揃え */
+    gap: 20px;              /* 音楽プレイヤーとカラーピッカーの間隔 */
+    margin-top: 40px;
+}
+
+.audio-wrapper, .color-picker-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* スマホ対応 */
+@media screen and (max-width: 480px) {
+    /* 画面全体の余白・文字サイズ */
+    body {
+        padding-top: 30px;       /* 上の余白を少し詰める */
+        font-size: 40px;         /* テキストを少し大きめに */
+    }
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "acousticness": 0.1215,
+    "danceability": 0.4723,
+    "energy": 0.7176,
+    "instrumentalness": 0.0168,
+    "liveness": 0.1624,
+    "loudness": -6.3412,
+    "speechiness": 0.0465,
+    "tempo": 100.4456,
+    "valence": 0.5632
+  },
+  {
+    "acousticness": 0.1569,
+    "danceability": 0.5299,
+    "energy": 0.7687,
+    "instrumentalness": 0.0,
+    "liveness": 0.159,
+    "loudness": -5.1728,
+    "speechiness": 0.0383,
+    "tempo": 92.5561,
+    "valence": 0.6577
+  },
+  {
+    "acousticness": 0.0684,
+    "danceability": 0.5108,
+    "energy": 0.8623,
+    "instrumentalness": 0.0,
+    "liveness": 0.1767,
+    "loudness": -3.7515,
+    "speechiness": 0.0544,
+    "tempo": 89.8242,
+    "valence": 0.6738
+  },
+  {
+    "acousticness": 0.0722,
+    "danceability": 0.5229,
+    "energy": 0.8265,
+    "instrumentalness": 0.0051,
+    "liveness": 0.1777,
+    "loudness": -5.4173,
+    "speechiness": 0.0442,
+    "tempo": 84.8596,
+    "valence": 0.6447
+  },
+  {
+    "acousticness": 0.056,
+    "danceability": 0.5356,
+    "energy": 0.9047,
+    "instrumentalness": 0.0,
+    "liveness": 0.1922,
+    "loudness": -3.7004,
+    "speechiness": 0.051,
+    "tempo": 88.2802,
+    "valence": 0.6621
+  },
+  {
+    "acousticness": 0.0383,
+    "danceability": 0.4463,
+    "energy": 0.8687,
+    "instrumentalness": 0.0023,
+    "liveness": 0.1677,
+    "loudness": -4.096,
+    "speechiness": 0.0462,
+    "tempo": 85.4365,
+    "valence": 0.4995
+  },
+  {
+    "acousticness": 0.293,
+    "danceability": 0.525,
+    "energy": 0.7191,
+    "instrumentalness": 0.0,
+    "liveness": 0.1548,
+    "loudness": -4.8069,
+    "speechiness": 0.0562,
+    "tempo": 95.4685,
+    "valence": 0.5623
+  },
+  {
+    "acousticness": 0.0506,
+    "danceability": 0.4554,
+    "energy": 0.8736,
+    "instrumentalness": 0.0,
+    "liveness": 0.1981,
+    "loudness": -4.8102,
+    "speechiness": 0.0516,
+    "tempo": 94.6647,
+    "valence": 0.5528
+  },
+  {
+    "acousticness": 0.2715,
+    "danceability": 0.2121,
+    "energy": 0.532,
+    "instrumentalness": 0.8727,
+    "liveness": 0.1754,
+    "loudness": -11.5141,
+    "speechiness": 0.03,
+    "tempo": 50.1845,
+    "valence": 0.1661
+  }
+]

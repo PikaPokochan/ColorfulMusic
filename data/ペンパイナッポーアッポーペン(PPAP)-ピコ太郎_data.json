@@ -1,0 +1,24 @@
+[
+  {
+    "acousticness": 0.1124,
+    "danceability": 0.872,
+    "energy": 0.555,
+    "instrumentalness": 0.0133,
+    "liveness": 0.1121,
+    "loudness": -7.8666,
+    "speechiness": 0.1376,
+    "tempo": 128.9009,
+    "valence": 0.8615
+  },
+  {
+    "acousticness": 0.2468,
+    "danceability": 0.5931,
+    "energy": 0.558,
+    "instrumentalness": 0.0898,
+    "liveness": 0.153,
+    "loudness": -11.6203,
+    "speechiness": 0.0887,
+    "tempo": 101.9502,
+    "valence": 0.6122
+  }
+]

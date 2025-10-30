@@ -1,0 +1,275 @@
+body {
+    margin-top: 100px;
+    margin: 0;
+    text-align: center;
+    font-family: sans-serif;
+    padding-top: 100px;
+    color: #15f4ee;
+    background-color: #000000;
+}
+
+/* 光らせるボタンたちのスタイル */
+.button{
+    position: relative;
+    text-align: center;
+    padding: 15px 40px;
+    font-size: 20px;
+    border: 5px solid #15f4ee;
+    font-family: poppins, sans-serif;
+    color: #15f4ee;
+    text-transform: uppercase;
+    background-color: transparent;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    overflow: hidden;
+    transition: all 1.5s ease;
+}
+
+.button::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:transparent;
+    box-shadow:0 5px 50px 0 #15f4ee,
+               0 5px 50px 0 #15f4ee inset;
+    opacity:0;
+    transition:opacity .6s ease;
+    pointer-events:none;
+} 
+
+.button:hover::after{
+    opacity:1;
+}
+
+/* 検索ボタン （Awesomplete） */
+.awesomplete ul {
+    background: #111 !important;  /* ← 黒背景を強制 */
+    border: 1px solid #555 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+    list-style: none !important;
+    margin: 5px auto 0 auto !important;
+    padding: 0 !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    z-index: 1000 !important;
+}
+
+.awesomplete li {
+    padding: 10px 14px !important;
+    border-bottom: 1px solid #333 !important;
+    cursor: pointer !important;
+    background: transparent !important;
+    color: #fff !important;
+}
+
+.awesomplete li:hover,
+.awesomplete li[aria-selected="true"] {
+    background: #333 !important;
+    color: #15f4ee!important;
+}
+
+.awesomplete mark {
+    background: none !important;
+    font-weight: 1000 !important;
+    color: #15f4ee !important;
+    font-weight: bold !important;
+}
+
+/* アーティスト・曲名テーブル */
+#songs-table {
+    border-collapse: collapse;
+    border: 1px solid #ffffff !important; /* 外枠の白い罫線を維持 */
+    width: 90% !important;
+    margin: auto !important;
+}
+
+#songs-table thead th {
+    background-color: #15f4ee !important;
+    color: #000 !important;
+    padding: 10px 12px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    border: 1px solid #ffffff !important; /* ヘッダの罫線を白に */
+}
+
+#songs-table tbody td {
+    background: transparent !important;
+    color: #ddd !important;
+    border: 1px solid #ffffff !important; /* 各セルの罫線を白に */
+    padding: 8px 12px !important;
+}
+
+#songs-table tbody tr:hover td {
+    background-color: #111 !important;
+    color: #15f4ee !important;
+}
+
+/* ページトップへ戻るボタン */
+.gotop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    border: 2px solid #15f4ee;
+    border-radius: 50%;
+    color: #15f4ee;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* 矢印部分 */
+.gotop::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid #15f4ee;
+    border-right: 3px solid #15f4ee;
+    transform: rotate(-45deg);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(-45deg);
+    /* ↑ translateで正確に中央に調整 */
+}
+
+/* ホバー時 */
+.gotop:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+#info-icon {
+    position: fixed;       /* スクロールしても動く */
+    top: 20px;             /* 上からの距離 */
+    left: 20px;            /* 左からの距離 */
+    width: 50px;           /* 丸のサイズ */
+    height: 50px;
+    background-color: #000; /* 背景色 */
+    border: 2px solid #15f4ee; /* ボーダー色 */
+    border-radius: 50%;    /* 丸くする */
+    color: #15f4ee;        /* アイコン色 */
+    font-size: 24px;       /* アイコンサイズ */
+    display: flex;          /* 中央揃え用 */
+    align-items: center;    /* 垂直中央 */
+    justify-content: center; /* 水平中央 */
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1000;         /* 前面に表示 */
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+    /* モーダル背景 */
+.modal {
+    display: none; /* 初期は非表示 */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+}
+    /* モーダルの中身 */
+    .modal-content {
+      background-color: white;
+      color:#000;
+      margin: 15% auto;
+      padding: 20px;
+      width: 80%;
+      border-radius: 8px;
+      text-align: left;
+    }
+    .close {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    img{
+        max-width: 50%;
+        height: auto;
+        margin: 10px 0;
+    }
+
+
+/* スマホ対応 */
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 100px;       /* 上の余白を少し詰める */
+        font-size: 40px;         /* テキストを少し大きめ */
+    }
+    h1 {
+        font-size: 40px;         /* タイトルも小さめ */
+        margin-bottom: 20px;
+    }
+    h2{
+        font-size: 28px;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+    h3{
+        font-size: 20px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    p {
+        font-size: 18px;         /* 説明文を大きめに */
+        margin: 10px 20px;
+    }
+    img{
+        max-width: 80%;          /* 画像の幅を80%に */
+        height: auto;
+        margin: 10px 0;
+    }
+
+    /* ボタンを大きく・押しやすく */
+    .button {
+        width: 90%;
+        max-width: 320px;
+        font-size: 20px;
+        padding: 16px;
+        margin-top: 12px;
+    }
+    .awesomplete ul {
+        font-size: 18px !important;
+    }
+    .awesomplete li {
+        padding: 14px 18px !important;
+    }
+
+    #songs-table {
+        font-size: 18px !important;
+        width: 90% !important;          /* 幅を90%とし、幅いっぱいにならないように */
+        margin:auto !important;         /* 中央寄せ */
+    }
+
+    .gotop {
+        width: 50px;
+        height: 50px;
+        right: 10px;
+        bottom: 10px;
+        border-width: 1.5px;
+    }
+
+    .gotop::before {
+        width: 10px;
+        height: 10px;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        transform: translate(-50%, -60%) rotate(-45deg);
+    }
+}
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音楽に合わせて光らせる</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/glowingstyle.css') }}">
+</head>
+<body>
+    <div class="player">
+        <audio id="audio" controls>
+            <source src="{{ url_for('download_file', filename=filename) }}" type="audio/mpeg">
+            <p>音声の再生に対応していません。</p>
+        </audio>
+
+<script>
+    const features = {{ features | tojson }};
+</script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+

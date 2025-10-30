@@ -1,0 +1,112 @@
+[
+  {
+    "acousticness": 0.7261,
+    "danceability": 0.4761,
+    "energy": 0.2911,
+    "instrumentalness": 0.0109,
+    "liveness": 0.1278,
+    "loudness": -10.3192,
+    "speechiness": 0.0342,
+    "tempo": 105.6277,
+    "valence": 0.3738
+  },
+  {
+    "acousticness": 0.9122,
+    "danceability": 0.48,
+    "energy": 0.4622,
+    "instrumentalness": 0.0038,
+    "liveness": 0.1284,
+    "loudness": -6.7853,
+    "speechiness": 0.0354,
+    "tempo": 90.77,
+    "valence": 0.5553
+  },
+  {
+    "acousticness": 0.8584,
+    "danceability": 0.4543,
+    "energy": 0.421,
+    "instrumentalness": 0.0025,
+    "liveness": 0.1093,
+    "loudness": -5.7806,
+    "speechiness": 0.0284,
+    "tempo": 133.8494,
+    "valence": 0.3911
+  },
+  {
+    "acousticness": 0.4133,
+    "danceability": 0.506,
+    "energy": 0.4866,
+    "instrumentalness": 0.0048,
+    "liveness": 0.1328,
+    "loudness": -8.3497,
+    "speechiness": 0.0375,
+    "tempo": 143.9451,
+    "valence": 0.3694
+  },
+  {
+    "acousticness": 0.4518,
+    "danceability": 0.4803,
+    "energy": 0.6154,
+    "instrumentalness": 0.002,
+    "liveness": 0.1384,
+    "loudness": -5.6976,
+    "speechiness": 0.0369,
+    "tempo": 133.2884,
+    "valence": 0.4503
+  },
+  {
+    "acousticness": 0.3394,
+    "danceability": 0.4929,
+    "energy": 0.6733,
+    "instrumentalness": 0.0054,
+    "liveness": 0.1419,
+    "loudness": -5.0568,
+    "speechiness": 0.0379,
+    "tempo": 125.4603,
+    "valence": 0.4058
+  },
+  {
+    "acousticness": 0.7694,
+    "danceability": 0.4763,
+    "energy": 0.4795,
+    "instrumentalness": 0.0063,
+    "liveness": 0.1337,
+    "loudness": -8.1779,
+    "speechiness": 0.0377,
+    "tempo": 150.6152,
+    "valence": 0.3736
+  },
+  {
+    "acousticness": 0.7454,
+    "danceability": 0.4705,
+    "energy": 0.5285,
+    "instrumentalness": 0.0048,
+    "liveness": 0.151,
+    "loudness": -6.2074,
+    "speechiness": 0.0459,
+    "tempo": 113.2877,
+    "valence": 0.4911
+  },
+  {
+    "acousticness": 0.13,
+    "danceability": 0.4215,
+    "energy": 0.7015,
+    "instrumentalness": 0.0083,
+    "liveness": 0.1666,
+    "loudness": -5.2108,
+    "speechiness": 0.0381,
+    "tempo": 129.1188,
+    "valence": 0.3184
+  },
+  {
+    "acousticness": 0.8422,
+    "danceability": 0.1581,
+    "energy": 0.2292,
+    "instrumentalness": 0.9272,
+    "liveness": 0.1399,
+    "loudness": -20.3216,
+    "speechiness": 0.0318,
+    "tempo": 58.3457,
+    "valence": 0.1571
+  }
+]

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曲選択</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css">
+    <style>
+        .awesomplete { width: 90%; max-width: 400px; }
+        input { padding: 8px; font-size: 16px; width: 100%; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background:#f5f5f5; }
+        #songs-table tbody tr:hover { background:#fafafa; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <a href="#" id="info-icon" title="使い方の説明ページ">？</a>
+
+    <h1>ColorfulMusic<h1>
+    <h2>検索ボックス</h2>
+
+    <form id="play-form" action="/glow" method="post">
+        <input id="song-input" placeholder="アーティスト・曲名を入力して検索" autocomplete="off">
+        <input type="hidden" id="filename" name="filename">
+        <br><br>
+        <button class="button" type="submit">音楽に合わせて光らせる</button>
+    </form>
+
+    <form id="color-form" action="/color" method="post" style="margin-top:8px;">
+        <input type="hidden" id="color-filename" name="filename" value="">
+        <button class="button" type="submit">色を決めて光らせる</button>
+    </form>
+
+    <ul id="artist-list"></ul>
+
+    <br>
+    <br>
+    <br>
+    <h2>曲リスト</h2>
+    <table id="songs-table">
+        <thead>
+            <tr><th>Artist</th><th>Title</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+    <script>
+        // Flaskから渡された files_with_names: [(file, display), ...]
+        const files_with_names = {{ files_with_names | tojson }};
+        const songs = files_with_names.map(([file, display]) => {
+            const parts = display.split(/-(.+)/);
+            if (parts.length > 1) {
+                return { file, display, artist: parts[0].trim(), title: parts[1].trim() };
+            } else {
+                return { file, display, artist: "", title: display.trim() };
+            }
+        });
+
+        // テーブルに出力（クリックで選択）
+        const tbody = document.querySelector("#songs-table tbody");
+        songs.forEach(s => {
+            const tr = document.createElement("tr");
+            tr.dataset.file = s.file;
+            const tdArtist = document.createElement("td");
+            tdArtist.textContent = s.artist;
+            const tdTitle = document.createElement("td");
+            tdTitle.textContent = s.title;
+            tr.appendChild(tdTitle);
+            tr.appendChild(tdArtist);
+            tr.addEventListener("click", () => {
+                document.getElementById("filename").value = s.file;
+                document.getElementById("song-input").value = s.display;
+            });
+            tbody.appendChild(tr);
+        });
+
+        // Awesomplete 初期化（表示は display）
+        const input = document.getElementById("song-input");
+        const hidden = document.getElementById("filename");
+        const awesomplete = new Awesomplete(input, {
+            list: songs.map(s => s.display),
+            minChars: 1,
+            autoFirst: true
+        });
+
+        // 候補選択時
+        input.addEventListener("awesomplete-selectcomplete", function (e) {
+            const selectedDisplay = e.text.value;
+            const match = songs.find(s => s.display === selectedDisplay);
+            hidden.value = match ? match.file : "";
+        });
+
+        // 送信時フォールバック照合
+        document.getElementById("play-form").addEventListener("submit", function(e){
+            if (!hidden.value) {
+                const val = input.value.trim();
+                const match = songs.find(s => s.display === val);
+                if (match) hidden.value = match.file;
+            }
+        });
+
+        // color-form 送信前に filename をコピー
+        document.getElementById("color-form").addEventListener("submit", function(e){
+            const colorHidden = document.getElementById("color-filename");
+            colorHidden.value = hidden.value || "";
+        });
+    </script>
+    <div><a href="#" class="gotop"></a></div>
+
+<!-- モーダル本体 -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>How to Use</h2>
+    <h3>1.曲を選択します</h3>
+    <p>
+        検索ボックスから曲を検索するか、下の「曲リスト」の楽曲をタップすることで曲の選択ができます。<br>
+    </p>
+    <p>検索ボックス</p>
+    <img src="{{ url_for('static', filename='image/search.jpg') }}" alt="曲選択画面の例">
+    <p>曲リスト</p>
+    <img src="{{ url_for('static', filename='image/list.jpg') }}" alt="曲選択画面の例">
+    <p>💡hint<br>右下の上矢印を押すとページトップへと戻ります<br></p>
+    <h3>2.「音楽に合わせて光らせる」または「色を決めて光らせる」ボタンを押します。</h3>
+    <p>
+        <strong>音楽に合わせて光らせる</strong>：音楽の特徴量などから計算し、音楽の雰囲気に合わせた色で画面が光ります。<br>
+        <strong>色を決めて光らせる</strong>：ボタンを押すとカラーピッカーで自分の好きな色に画面の色を変えることができます。<br>
+    </p>
+    <p>ボタン</p>
+    <img src="{{ url_for('static', filename='image/button.jpg') }}" alt="ボタンの表示例">
+    <p>カラーピッカー</p>
+    <img src="{{ url_for('static', filename='image/colorpicker.jpg') }}" alt="カラーピッカーの表示例">
+    <h3>3.音楽に合わせてor自分が決めた色で画面が光ります</h3>
+    <p>
+        ⚠️音楽ファイルを選択しない状態でボタンを押すと、エラーが起こります！<br>ファイルを選択してからボタンを押してください。<br>
+    </p>
+    </div>
+  </div>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal');
+    const btn = document.getElementById('info-icon');
+    const closeBtn = document.querySelector('.close');
+
+    if (!modal || !btn || !closeBtn) {
+      console.warn("モーダル要素が見つからない！");
+      return;
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    function closeModalOnBackground(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    window.addEventListener('click', closeModalOnBackground);       // PCクリック対応
+    window.addEventListener('touchstart', closeModalOnBackground);  // スマホタップ対応
+  });
+</script>
+
+</body>
+</html>
