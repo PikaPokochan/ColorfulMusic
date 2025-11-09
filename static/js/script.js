@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastIndex = index;
 
                 const energy = features[index].energy;
-                const acousticness = features[index].acousticness;
+                // const acousticness = features[index].acousticness;
                 const valence = features[index].valence;
                 const loudness = features[index].loudness;
                 bpm = features[index].tempo;
@@ -45,31 +45,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ===== フェードと生成を制御するメインループ =====
+    // 図形のフェードと点滅をする
     function blinkCycle() {
         const beatInterval = (60 / bpm) * 1000;
         const fadeDuration = beatInterval * 0.8; // 消えるまでの時間
         const visibleDuration = beatInterval * 0.2; // 表示の残り時間
 
-        // まず全て削除
+        // 図形全部削除
         shapesContainer.innerHTML = "";
 
-        // 新しい図形を生成してフェードイン
+        // 新しい図形を生成
         const shapeCount = 10;
         createShapes(shapeCount, sides);
 
-        // フェードアウト → 完全に消えたら次を生成
+        // 完全に消えたら次を生成
         setTimeout(() => {
             const shapes = document.querySelectorAll(".shape");
             shapes.forEach(shape => shape.classList.add("fade-out"));
         }, visibleDuration);
 
         setTimeout(() => {
-            blinkCycle(); // 再帰呼び出し（完全に消えてから次へ）
+            blinkCycle(); // 完全に消えてから次へ
         }, beatInterval);
     }
 
-    // ===== 色と形の関数群 =====
+    // 背景色（hsl）
     function JsonDataToColor(energy, acousticness, valence, loudness) {
         const h = energyAndvalenceToHue(energy, valence);
         const s = loudnessToSaturation(loudness);
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return `hsl(${h}, ${s}%, ${l}%)`;
     }
 
+    // 色相
     function energyAndvalenceToHue(energy, valence) {
         const red = 0;
         const orange = 40;
@@ -88,17 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return (h + 360) % 360;
     }
 
+    // 輝度
     function valenceToLightness(valence, energy) {
         let l = (1 - valence) * 45 + 20 + energy * 15;
         return Math.max(0, Math.min(100, l));
     }
 
+    //彩度
     function loudnessToSaturation(loudness) {
         const min = -60, max = 0;
         let s = ((loudness - min) / (max - min)) * 100;
         return Math.max(0, Math.min(100, s));
     }
 
+    // 図形の形決め
     function energyToShapeSides(energy) {
         return Math.floor(3 + energy * 5); // energy=0→3, energy=1→8
     }
